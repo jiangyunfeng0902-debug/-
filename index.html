@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>远航客户管理</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#"><span class="brand-mark">Y</span><span>远航 CRM</span></a>
+        <nav aria-label="主导航">
+          <a class="nav-link active" href="#customers"><span>▦</span> 客户管理</a>
+          <a class="nav-link" href="#tips"><span>◇</span> 使用说明</a>
+        </nav>
+        <div class="sidebar-note"><strong>外贸小助手</strong><br />客户资料仅保存在当前浏览器中。</div>
+      </aside>
+
+      <main>
+        <header class="page-header">
+          <div><p class="eyebrow">海外客户管理</p><h1>客户列表</h1><p class="subtitle">集中记录每一位海外客户，及时推进商机。</p></div>
+          <button class="primary-button" id="open-add" type="button"><span>＋</span> 添加客户</button>
+        </header>
+
+        <section class="summary" aria-label="客户统计">
+          <div class="summary-card"><span>全部客户</span><strong id="total-count">0</strong></div>
+          <div class="summary-card pending"><span>待跟进</span><strong id="pending-count">0</strong></div>
+          <div class="summary-card followed"><span>已跟进</span><strong id="followed-count">0</strong></div>
+          <div class="summary-card won"><span>已成交</span><strong id="won-count">0</strong></div>
+        </section>
+
+        <section class="panel" id="customers">
+          <div class="toolbar">
+            <label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="搜索公司、联系人、产品或 WhatsApp" /></label>
+            <label class="select-box"><span>国家</span><select id="country-filter"><option value="">全部国家</option></select></label>
+            <label class="select-box"><span>状态</span><select id="status-filter"><option value="">全部状态</option><option value="待跟进">待跟进</option><option value="已跟进">已跟进</option><option value="已成交">已成交</option></select></label>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>客户公司</th><th>国家 / 地区</th><th>联系人</th><th>意向产品</th><th>WhatsApp</th><th>客户需求</th><th>跟进状态</th><th>操作</th></tr></thead>
+              <tbody id="customer-table"></tbody>
+            </table>
+            <div class="empty-state" id="empty-state" hidden><div class="empty-icon">◎</div><h2>还没有符合条件的客户</h2><p>点击右上角“添加客户”，开始建立您的客户档案。</p></div>
+          </div>
+        </section>
+
+        <section class="tips" id="tips"><strong>小提示：</strong>点击状态标签可快速切换跟进进度；所有数据自动保存在本机浏览器。</section>
+      </main>
+    </div>
+
+    <dialog id="customer-dialog">
+      <form id="customer-form">
+        <div class="modal-heading"><div><p class="eyebrow">客户档案</p><h2 id="dialog-title">添加客户</h2></div><button class="icon-button" type="button" id="close-dialog" aria-label="关闭">×</button></div>
+        <input type="hidden" id="customer-id" />
+        <div class="form-grid">
+          <label>客户公司 <em>*</em><input id="company" required placeholder="例如：Sunrise Trading" /></label>
+          <label>国家 / 地区 <em>*</em><input id="country" required placeholder="例如：美国" /></label>
+          <label>联系人 <em>*</em><input id="contact" required placeholder="例如：John Smith" /></label>
+          <label>意向产品 <input id="product" placeholder="例如：户外家具" /></label>
+          <label>WhatsApp <input id="whatsapp" placeholder="例如：+1 234 567 8900" /></label>
+          <label>跟进状态 <select id="status"><option value="待跟进">待跟进</option><option value="已跟进">已跟进</option><option value="已成交">已成交</option></select></label>
+          <label class="full-width">客户需求 <textarea id="needs" rows="3" placeholder="记录规格、数量、报价或交期等需求"></textarea></label>
+        </div>
+        <div class="form-actions"><button class="secondary-button" type="button" id="cancel-dialog">取消</button><button class="primary-button" type="submit">保存客户</button></div>
+      </form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
